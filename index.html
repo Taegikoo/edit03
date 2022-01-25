@@ -18,11 +18,11 @@
 
         <ol :class="olClass">
             <li v-for="(todo, idx) in todos">  
-                {{todo}} <button @click="delBtn(idx)">X 삭제</button>
+                {{todo}} <button @click="delBtn(idx)">완료</button>
             </li>
         </ol>
         <div class="clear">
-            <button @click="clearAllTodo">X 전체삭제</button>
+            <button @click="clearAllTodo">전체완료</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
