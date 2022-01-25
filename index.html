@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <link rel="stylesheet" href="css/css/todoList.css" />
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+
+        <div id="inputBox">
+            <input type="text" :id="idName" v-model="todo">
+            <input type="submit" :class="className" @click="addTodo()" value="등록">
+        </div>
+
+        <ol :class="olClass">
+            <li v-for="(todo, idx) in todos">  
+                {{todo}} <button @click="delBtn(idx)">X 삭제</button>
+            </li>
+        </ol>
+        <div class="clear">
+            <button @click="clearAllTodo">X 전체삭제</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        new Vue ({
+            el: "#app",
+            data: {
+                title: "오늘 할일 목록 만들기!",
+                className: "addBtn",
+                idName: "inBox",
+                olClass: "list",
+                todo: "",
+                todos: [],
+
+           },
+            methods: {
+                addTodo: function () {
+                    // arrayName.push(content);
+                    if ( this.todo !== "") {        // input 박스가 비어있지 않은 경우
+                        this.todos.push(this.todo);
+                        this.todo = "";             // 변수에 빈문자열 입력
+                    }
+                },
+                delBtn: function (idx) {
+                    // arrayName.splice(indexNum, splitCount);
+                    this.todos.splice(idx, 1);
+                },
+                clearAllTodo: function() {
+                    this.todos = [];
+                }
+           },
+       });
+    </script>
+
+</body>
+</html>
